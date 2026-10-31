@@ -6,12 +6,14 @@ interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   spotlightColor?: string;
+  contentClassName?: string;
 }
 
 export default function SpotlightCard({
   children,
   className = "",
   spotlightColor = "rgba(212, 175, 55, 0.15)",
+  contentClassName = "",
   ...props
 }: SpotlightCardProps) {
   const divRef = useRef<HTMLDivElement>(null);
@@ -44,7 +46,7 @@ export default function SpotlightCard({
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 40%)`,
         }}
       />
-      <div className="relative z-10">{children}</div>
+      <div className={`relative z-10 h-full w-full ${contentClassName}`}>{children}</div>
     </div>
   );
 }

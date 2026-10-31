@@ -88,31 +88,35 @@ export default function PhotoGallery() {
               onClick={() => openLightbox(index)}
               spotlightColor="rgba(212, 175, 55, 0.35)"
               className="group relative h-72 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
+              contentClassName="h-full w-full"
             >
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
+              <div className="relative w-full h-full">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
 
-              {/* Hover Zoom Icon */}
-              <div className="absolute top-3 right-3 p-2 rounded-full bg-black/60 backdrop-blur-md text-nxgen-gold opacity-0 group-hover:opacity-100 transition-opacity">
-                <ZoomIn className="w-4 h-4" />
-              </div>
+                {/* Hover Zoom Icon */}
+                <div className="absolute top-3 right-3 p-2 rounded-full bg-black/60 backdrop-blur-md text-nxgen-gold opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ZoomIn className="w-4 h-4" />
+                </div>
 
-              {/* Details Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                <span className="text-[10px] uppercase font-bold text-nxgen-gold tracking-widest block mb-1">
-                  {item.category}
-                </span>
-                <h4 className="font-serif-luxury font-bold text-sm text-white line-clamp-1 mb-1">
-                  {item.title}
-                </h4>
-                <p className="text-[11px] text-gray-300 line-clamp-2 font-light">
-                  {item.description}
-                </p>
+                {/* Details Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                  <span className="text-[10px] uppercase font-bold text-nxgen-gold tracking-widest block mb-1">
+                    {item.category}
+                  </span>
+                  <h4 className="font-serif-luxury font-bold text-sm text-white line-clamp-1 mb-1">
+                    {item.title}
+                  </h4>
+                  <p className="text-[11px] text-gray-300 line-clamp-2 font-light">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             </SpotlightCard>
           ))}
